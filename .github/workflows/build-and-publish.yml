@@ -30,7 +30,7 @@ jobs:
       run: pip install edgedb
 
     - name: Run edgedb.codegen
-      run: python -m edgedb.codegen --target async --file src/genomephone/edgedb_interface.py
+      run: ln -s ../src/edgeql ./edgeql && python -m edgedb.codegen --target async --file ../src/genomephone/edgedb_interface.py
       working-directory: ./genomephone-core
 
     - name: Install poetry
