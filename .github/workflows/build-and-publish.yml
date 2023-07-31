@@ -48,6 +48,12 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@master
 
+    - name: set lower case owner name
+      run: |
+        echo "OWNER_LC=${OWNER,,}" >>${GITHUB_ENV}
+      env:
+        OWNER: '${{ github.repository_owner }}'
+
     - name: Login to GitHub Container Registry
       uses: docker/login-action@master
       with:
@@ -60,4 +66,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: ghcr.io/${{ github.repository_owner }}/genomephone-frontend:latest
+        tags: ghcr.io/${OWNER_LC}/genomephone-frontend:latest
