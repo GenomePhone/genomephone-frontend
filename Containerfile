@@ -16,4 +16,4 @@ RUN pip install /tmp/*.whl \
     && cd .. \
     && rm -rf bcftools.tar.bz2
 
-CMD 
+CMD ["python", "-m", "genomephone"]
