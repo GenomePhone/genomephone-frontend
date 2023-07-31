@@ -1,5 +1,7 @@
 = GenomePhone Frontend
 
+image::https://github.com/GenomePhone/genomephone-frontend/actions/workflows/build-and-publish.yml/badge.svg[align="center"]
+[.text-center]
 image:https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge["License: MIT", link="https://opensource.org/licenses/MIT"]
 image:https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue["Python 3.11", link:https://www.python.org]
 image:https://img.shields.io/badge/fastapi-109989?style=for-the-badge&logo=FASTAPI&logoColor=white["FastAPI", link:https://fastapi.tiangolo.com]
