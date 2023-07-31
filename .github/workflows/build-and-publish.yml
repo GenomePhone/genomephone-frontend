@@ -66,4 +66,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: ghcr.io/${OWNER_LC}/genomephone-frontend:latest
+        tags: ghcr.io/${{ env.OWNER_LC }}/genomephone-frontend:latest
