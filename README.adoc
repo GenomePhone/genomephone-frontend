@@ -1,7 +1,55 @@
 = GenomePhone Frontend
 
+image:https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge["License: MIT", link="https://opensource.org/licenses/MIT"]
+image:https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue["Python 3.11", link:https://www.python.org]
+image:https://img.shields.io/badge/fastapi-109989?style=for-the-badge&logo=FASTAPI&logoColor=white["FastAPI", link:https://fastapi.tiangolo.com]
+image:https://img.shields.io/badge/kubernetes-336EE5?style=for-the-badge&logo=kubernetes&logoColor=white["Kubernetes", link:https://kubernetes.io]
+
+
+
 > **"Ring ring ring ring, GenomePhone"**
 
-GenomePhone is a framework for distributed variant calling.
+== Introduction
 
-This project is the API frontend for GenomePhone. It is written in Python using the FastAPI framework.
+Variant calling is a process in bioinformatics that identifies differences in a genomic sequence compared to a reference sequence. These differences, or variants, can include single nucleotide polymorphisms (SNPs), insertions, deletions, and others. Variant calling plays a crucial role in understanding the genetic basis of diseases, among other applications.
+
+GenomePhone is a framework for distributed variant calling. This repository, `genomephone-frontend`, serves as the API frontend for the GenomePhone project. It is written in Python using the FastAPI framework.
+
+The `genomephone-frontend` is responsible for receiving genomic data, dividing it into manageable chunks, and distributing these chunks to different nodes in a Kubernetes cluster for parallel processing. The results are then collected, combined, and made available for further analysis.
+
+== Getting Started
+
+To get started with `genomephone-frontend`, you'll need to have Python 3.11 installed on your machine. Once Python is installed, you can clone this repository and install the necessary dependencies.
+
+=== Clone the Repository
+
+[source, bash]
+----
+git clone https://github.com/GenomePhone/genomephone-frontend.git
+cd genomephone-frontend
+----
+
+=== Install Dependencies
+
+[source, bash]
+----
+pip install poetry
+poetry install
+----
+
+== Usage
+
+After installing the dependencies, you can start the FastAPI server.
+
+[source, bash]
+----
+poetry run uvicorn src.main:app --reload
+----
+
+== Contributing
+
+We welcome contributions to `genomephone-frontend`! If you have a feature request, bug report, or proposal, please open an issue on this GitHub repository.
+
+== License
+
+`genomephone-frontend` is licensed under the MIT License. See the `LICENSE` file for more details.
