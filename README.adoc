@@ -1,0 +1,7 @@
+= GenomePhone Frontend
+
+> **"Ring ring ring ring, GenomePhone"**
+
+GenomePhone is a framework for destributed variant calling.
+
+This project is the API frontend for GenomePhone. It is written in Python using the FastAPI framework.
