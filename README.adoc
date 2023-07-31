@@ -4,8 +4,8 @@ image:https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge["L
 image:https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue["Python 3.11", link:https://www.python.org]
 image:https://img.shields.io/badge/fastapi-109989?style=for-the-badge&logo=FASTAPI&logoColor=white["FastAPI", link:https://fastapi.tiangolo.com]
 image:https://img.shields.io/badge/kubernetes-336EE5?style=for-the-badge&logo=kubernetes&logoColor=white["Kubernetes", link:https://kubernetes.io]
-
-
+image:https://img.shields.io/badge/Apache%20Kafka-000?style=for-the-badge&logo=apachekafka["Apache Kafka", link:https://kafka.apache.org/]
+image:https://img.shields.io/badge/EdgeDB-5DC797?style=for-the-badge["EdgeDB", link:https://kafka.apache.org/]
 
 > **"Ring ring ring ring, GenomePhone"**
 
