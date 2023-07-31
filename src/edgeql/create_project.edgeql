@@ -1,6 +1,6 @@
 INSERT Project {
     name := <str>$name,
-    reference := (INSERT Genome {
+    ref := (INSERT Genome {
         data := <bytes>$reference_data
     }),
     targets := (
