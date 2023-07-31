@@ -20,7 +20,7 @@ jobs:
         python-version: 3.11
 
     - name: Install edgedb
-      run: curl --proto '=https' --tlsv1.2 -sSf https://sh.edgedb.com | sh -y
+      run: curl --proto '=https' --tlsv1.2 -sSf https://sh.edgedb.com > edgedb.sh && ./edgedb.sh -y && rm edgedb.sh
 
     - name: Initialize edgedb project
       run: edgedb project init
