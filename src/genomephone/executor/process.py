@@ -6,13 +6,14 @@ from kubernetes import client
 
 from genomephone.edgedb_interface import create_chunk
 
+
 def create_k8s_job(api_instance, project_id, num_chunks):
     # Define the job
     job = client.V1Job(
         api_version="batch/v1",
         kind="Job",
         metadata=client.V1ObjectMeta(
-            name=f"genomephone-{project_id}"[:63], 
+            name=f"genomephone-{project_id}"[:63],
             namespace="default"
         ),
         spec=client.V1JobSpec(
@@ -21,9 +22,8 @@ def create_k8s_job(api_instance, project_id, num_chunks):
                 spec=client.V1PodSpec(
                     containers=[
                         client.V1Container(
-                            name="varscan",
-                            image="container-image",
-                            command=["command"],
+                            name="varscan-worker",
+                            image="ghcr.io/genomephone/genomephone-worker-varscan:latest",
                             env=[
                                 client.V1EnvVar(
                                     name="PROJECT_ID",
@@ -64,7 +64,7 @@ def preprocess_target(genome):
     genome_bam_path = Path(f"{genome.id}.bam")
     with pysam.AlignmentFile(genome_bam_path, "wb") as bam_file:
         bam_file.write(genome.data)
-    
+
     # sort and index the bam file
     pysam.sort("-o", genome_bam_path, genome_bam_path)
     pysam.index(genome_bam_path)
@@ -74,18 +74,19 @@ def preprocess_target(genome):
         for ref in bam_file.references:
             for read in bam_file.fetch(ref):
                 yield read
-    
+
     # delete the bam file
     genome_bam_path.unlink()
+
 
 def make_mpileup(chunk, reference_file):
     result = ""
     with pysam.AlignmentFile(chunk, "rb") as bam_file:
         for pileupcolumn in bam_file.pileup(fastafile=reference_file):
             result += "\t".join(str(x) for x in [pileupcolumn.reference_name,
-                                              pileupcolumn.reference_pos,
-                                              pileupcolumn.nsegments,
-                                              pileupcolumn.get_query_sequences()]) + "\n"
+                                                 pileupcolumn.reference_pos,
+                                                 pileupcolumn.nsegments,
+                                                 pileupcolumn.get_query_sequences()]) + "\n"
     return result
 
 
@@ -98,7 +99,7 @@ def process_project(kafka_producer, k8s_instance, project, references_path):
             chunk_id = create_chunk(target, mpileup)
             publish_message(kafka_producer, project.id, "chunk_id", chunk_id)
             num_chunks += 1
-    
+
     kafka_producer.flush()
 
     # create a k8s job to process the chunks

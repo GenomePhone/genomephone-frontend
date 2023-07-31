@@ -1,3 +1,4 @@
 .idea/*
 dist/*
 src/genomephone/edgedb_interface.py
+genomephone-core/edgeql
