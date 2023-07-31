@@ -23,7 +23,7 @@ jobs:
       run: curl --proto '=https' --tlsv1.2 -sSf https://sh.edgedb.com > edgedb.sh && chmod +x ./edgedb.sh && ./edgedb.sh -y && rm edgedb.sh
 
     - name: Initialize edgedb project
-      run: edgedb project init
+      run: edgedb project init --non-interactive
       working-directory: ./genomephone-core
 
     - name: Install edgedb (python)
