@@ -22,11 +22,14 @@ app = FastAPI()
 def get_client():
     return edgedb.create_async_client()
 
+
 def get_k8s_api():
     return client.BatchV1Api()
 
+
 def get_kafka_producer():
     return Producer({"bootstrap.servers": "kafka:9092"})
+
 
 def initialize_reference_folder():
     # initialize reference folder
@@ -34,6 +37,7 @@ def initialize_reference_folder():
 
 
 scheduler = AsyncIOScheduler()
+
 
 @scheduler.scheduled_job(
     "interval", minutes=1,
@@ -48,6 +52,7 @@ async def check_database_for_new(
         process_project(kafka_producer, k8s_api, project)
         edgedb_interface.set_project_status(client, project.id, "processing")
 
+
 @scheduler.scheduled_job("interval", minutes=5, args=[get_client()])
 async def check_database_for_done(client: edgedb.AsyncIOClient):
     for project in await edgedb_interface.get_done_projects(client):
@@ -60,6 +65,7 @@ async def check_database_for_done(client: edgedb.AsyncIOClient):
 async def startup():
     scheduler.start()
     initialize_reference_folder()
+
 
 @app.on_event("shutdown")
 async def shutdown():
@@ -102,6 +108,7 @@ async def create_reference(
 
     await edgedb_interface.create_reference(db, name=reference_name)
     return {"message": "Reference created successfully"}
+
 
 @app.delete("/references/{reference_name}")
 async def delete_reference(
