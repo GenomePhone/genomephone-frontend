@@ -1,6 +1,6 @@
 SELECT Project {
     name,
-    reference,
+    ref,
     targets
 } 
 FILTER .state = <ProjectState>"running";
