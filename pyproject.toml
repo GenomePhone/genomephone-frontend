@@ -1,0 +1,23 @@
+# modified to support pysam. TODO: update pysam to work with basic poetry
+[build-system]
+requires = ["poetry-core>=1.0.0", "setuptools>=59.0", "wheel", "Cython>=0.29.30,<3.0"]
+build-backend = "setuptools.build_meta:__legacy__"
+
+[tool.poetry]
+name = "GenomePhone"
+version = "0.1.0"
+description = "GenomePhone is a framework for destributed variant calling."
+authors = ["Keegan Birt <kbirt@birtdata.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pysam = "^0.21.0"
+fastapi = "^0.100.1"
+kubernetes = "^27.2.0"
+edgedb = "^1.5.0"
+apscheduler = "^3.10.1"
+confluent-kafka = "^2.2.0"
+
+[tool.poetry.dev-dependencies]
+
+[tool.ruff]
