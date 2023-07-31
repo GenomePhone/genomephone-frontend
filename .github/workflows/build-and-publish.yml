@@ -24,6 +24,7 @@ jobs:
 
     - name: Initialize edgedb project
       run: edgedb project init
+      working-directory: ./genomephone-core
 
     - name: Install edgedb (python)
       run: pip install edgedb
