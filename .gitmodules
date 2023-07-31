@@ -1,0 +1,3 @@
+[submodule "genomephone-core"]
+	path = genomephone-core
+	url = https://github.com/GenomePhone/genomephone-core
